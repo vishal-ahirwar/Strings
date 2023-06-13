@@ -2,8 +2,12 @@
 //
 
 #include<stdio.h>
+#include"string.hpp"
 int main()
 {
-    for (int i = 32; i < 256; ++i)printf("%c%c", i, i % 10 ==0? '\n' : ' ' );
-}
+	V::String str("Hello world");
+	const char* ptr = str();
+	printf("%s\n", ptr);
+};
+
 
