@@ -7,12 +7,19 @@ namespace V
 class String
 {
 public:
-	String(const char* str) :data((char*)str), b_allocated(0) {
-		
-		while (data[length] != '\0')++length;
+	String(const char* str){
+		while (str[length] != '\0')++length;
+		this->data = new char[length+1];
+		for (int i = 0; i <= length; ++i)data[i] = str[i];
 	};
-	~String() {if(b_allocated) delete [] data; };
+	~String() {if(data) delete [] data; };
 	const char* operator()(){ return this->data; };
+	//TODO Validate String
+	//TODO Reverse String
+	//TODO Comparing String
+	//TODO Checking Palindrome
+	//TODO Duplicates in String
+
 	const char* operator+(const String& rhs)
 	{
 		
@@ -26,11 +33,12 @@ public:
 
 public:
 	auto get_length()const { return this->length; };
-	auto b_is_heap_allocated()const { return this->b_allocated; };
-	int count_words() {
+
+	auto count_words() {
+		int words{1};
 	for (int i = 0; i < length; ++i)
 	{
-		if (data[i] == ' ' && data[i - 1]==' ')
+		if (data[i] == ' ')
 		{
 			++words;
 		}
@@ -38,8 +46,7 @@ public:
 	return words;
 	};
 private:
-	unsigned long int words{};
-	bool b_allocated;
+
 	unsigned int length{};
 	char* data{ nullptr };
 };
